@@ -1,0 +1,4 @@
+/.flaskenv
+/.venv
+/app.db
+/__pycache__
