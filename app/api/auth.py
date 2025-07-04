@@ -2,7 +2,7 @@ import sqlalchemy as sa
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 from app import db
 from app.models import User
-from app.errors import error_response
+from app.api.errors import error_response
 
 # need basic auth for login to get tokens for token auth
 basic_auth = HTTPBasicAuth()

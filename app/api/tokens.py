@@ -1,8 +1,9 @@
-from app import db, app
-from app.auth import basic_auth, token_auth
+from app.api.auth import basic_auth, token_auth
 from flask import jsonify
+from app import db
+from app.api import bp
 
-@app.route('/tokens', methods=['POST'])
+@bp.route('/tokens', methods=['POST'])
 @basic_auth.login_required
 def get_token():
     # the get_token() here is from User model in models.py
@@ -10,7 +11,7 @@ def get_token():
     db.session.commit()
     return jsonify({'token': token})
 
-@app.route('/tokens', methods=['DELETE'])
+@bp.route('/tokens', methods=['DELETE'])
 @token_auth.login_required
 def revoke_token():
     # revoke_token() here is also from User model
