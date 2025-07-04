@@ -1,4 +1,4 @@
-""" handles errors """
+""" handles errors & return JSON responses """
 from werkzeug.http import HTTP_STATUS_CODES
 from werkzeug.exceptions import HTTPException
 from app.api import bp

@@ -1,3 +1,4 @@
+""" handles token auth """
 from app.api.auth import basic_auth, token_auth
 from flask import jsonify
 from app import db

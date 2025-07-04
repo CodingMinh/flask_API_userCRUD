@@ -1,3 +1,5 @@
+""" configuration variables """
+# activate venv: & "C:\Users\Hi Windows 11 23\Desktop\Python\flask_API_userCRUD\.venv\Scripts\Activate.ps1"
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 

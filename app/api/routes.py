@@ -1,5 +1,4 @@
-# activate venv: & "C:\Users\Hi Windows 11 23\Desktop\Python\flask_API_userCRUD\.venv\Scripts\Activate.ps1"
-
+""" handles API routes """
 from flask import request, url_for, jsonify, abort
 import sqlalchemy as sa
 from app.api.errors import bad_request
@@ -43,7 +42,7 @@ def create_user():
 def update_user(id):
     if token_auth.current_user().id != id:
         abort(403)
-        
+
     user = db.get_or_404(User, id)
     data = request.get_json()
     if 'username' in data and user.username != data['username'] and db.session.scalar(sa.select(User).where(User.username == data['username'])):

@@ -1,3 +1,4 @@
+""" top-level Python script to define Flask application instance """
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from app import create_app, db

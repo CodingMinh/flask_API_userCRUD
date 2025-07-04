@@ -1,3 +1,4 @@
+""" basic auth (for login) and token auth (for authentication & authorization) """
 import sqlalchemy as sa
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 from app import db
