@@ -10,6 +10,7 @@ from app.api.auth import token_auth
 
 # get all users
 @bp.route('/users', methods=['GET'])
+@token_auth.login_required
 def get_users():
     page = request.args.get('page', 1, type=int)
     per_page = min(request.args.get('per_page', 10, type=int), 100)
@@ -17,6 +18,7 @@ def get_users():
 
 # get a user with given id
 @bp.route('/users/<int:id>', methods=['GET'])
+@token_auth.login_required
 def get_user(id):
     return jsonify(db.get_or_404(User, id).to_dict())
 
@@ -37,7 +39,11 @@ def create_user():
 
 # update/modify a user with given id
 @bp.route('/users/<int:id>', methods=['PUT'])
+@token_auth.login_required
 def update_user(id):
+    if token_auth.current_user().id != id:
+        abort(403)
+        
     user = db.get_or_404(User, id)
     data = request.get_json()
     if 'username' in data and user.username != data['username'] and db.session.scalar(sa.select(User).where(User.username == data['username'])):
@@ -49,6 +55,7 @@ def update_user(id):
 
 # delete a given user
 @bp.route('/users/<int:id>', methods=['DELETE'])
+@token_auth.login_required
 def delete_user(id):
     user = db.get_or_404(User, id)
     db.session.delete(user)
